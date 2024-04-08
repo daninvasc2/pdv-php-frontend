@@ -1,0 +1,10 @@
+.main-content {
+  display: flex;
+  position: fixed;
+  overflow: hidden;
+  max-width: 100vw;
+}
+
+.router {
+  width: calc(100vw - 300px);
+}

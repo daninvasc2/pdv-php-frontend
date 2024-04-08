@@ -1,0 +1,29 @@
+<app-default-header title="Produtos" icon="produto-icon.png" formRoute="/produto/cadastrar"></app-default-header>
+<div class="default-container">
+  <app-search-input></app-search-input>
+  <table class="default-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Tipo do produto</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let produto of produtos">
+        <td></td>
+        <td>{{ produto.id }}</td>
+        <td>{{ produto.nome }}</td>
+        <td>{{ produto.tipoProduto?.nome }}</td>
+        <td>
+          <a [routerLink]="['/produto', produto.id, 'editar']">Editar</a>
+          <a (click)="excluirProduto(produto.id)">Excluir</a>
+        </td>
+      </tr>
+      <tr *ngIf="!produtos || produtos.length <= 0">
+        <td colspan="4">Nenhum produto encontrado</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

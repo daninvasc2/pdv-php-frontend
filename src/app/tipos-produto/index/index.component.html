@@ -1,0 +1,29 @@
+<app-default-header title="Tipos de Produto" icon="tipo-produto-icon.png" formRoute="/tipo-produto/cadastrar"></app-default-header>
+<div class="default-container">
+  <app-search-input></app-search-input>
+  <table class="default-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Porcentagem de impostos</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tipoProduto of tiposProduto">
+        <td></td>
+        <td>{{ tipoProduto.id }}</td>
+        <td>{{ tipoProduto.nome }}</td>
+        <td>{{ tipoProduto.porcentagemImposto }}</td>
+        <td>
+          <a [routerLink]="['/produto', tipoProduto.id, 'editar']">Editar</a>
+          <a (click)="excluirTipoProduto(tipoProduto.id)">Excluir</a>
+        </td>
+      </tr>
+      <tr *ngIf="!tiposProduto || tiposProduto.length <= 0">
+        <td colspan="4">Nenhum tipo de produto encontrado</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,32 @@
+<app-default-header title="Vendas" icon="venda-icon.png" formRoute="/venda/cadastrar"></app-default-header>
+<div class="default-container">
+  <app-search-input></app-search-input>
+  <table class="default-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>#</th>
+        <th>Valor</th>
+        <th>Valor imposto</th>
+        <th>Data</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let venda of vendas">
+        <td></td>
+        <td>{{ venda.id }}</td>
+        <td>{{ venda.valorTotal | currency }}</td>
+        <td>{{ venda.valorImpostos | currency }}</td>
+        <td>{{ venda.data | date: 'dd/MM/yyyy' }}</td>
+        <td>
+          <a [routerLink]="['/venda', venda.id, 'editar']">Editar</a>
+          <a (click)="excluirVenda(venda.id)">Excluir</a>
+        </td>
+      </tr>
+      <tr *ngIf="!vendas || vendas.length <= 0">
+        <td colspan="6">Nenhuma venda encontrada</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
