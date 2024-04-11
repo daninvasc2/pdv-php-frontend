@@ -1,1 +1,17 @@
-<p>form works!</p>
+<app-default-header title="{{operacao}} de Tipo de Produtos" icon="tipo-produto-icon.png"></app-default-header>
+<div class="default-container grid-center">
+  <form (ngSubmit)="salvarTipoProduto()" [formGroup]="formTipoProduto" class="default-form">
+      <mat-form-field class="w-full">
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Nome" formControlName="nome" required />
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Porcentagem de imposto</mat-label>
+        <input matInput placeholder="Porcentagem de Imposto" formControlName="porcentagemImposto" type="number" required />
+      </mat-form-field>
+    <div class="buttons-container">
+      <button class="default-button color-primary background-secondary" type="button" routerLink="/tipos-produto">Voltar</button>
+      <button class="default-button" type="submit">Salvar</button>
+    </div>
+  </form>
+</div>

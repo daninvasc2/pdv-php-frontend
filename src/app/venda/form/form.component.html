@@ -1,1 +1,103 @@
-<span>form works!</span>
+<app-default-header title="{{operacao}} de Venda" icon="venda-icon.png"></app-default-header>
+<div class="default-container">
+  <form (ngSubmit)="salvarVenda()" [formGroup]="formItensVenda" class="default-form">
+    <h1>Adicionar itens</h1>
+    <table class="default-table">
+      <thead>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Preço Unitário</th>
+        <th>Valor Total</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <app-produto-search #produtoSearch (produtoSelecionado)="produtoSelecionado($event)"></app-produto-search>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput type="number" formControlName="quantidade" placeholder="Quantidade" (change)="calcularValorTotal()" min="1">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput type="number" formControlName="valorUnitario" placeholder="Valor do produto" (change)="calcularValorTotal()">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput formControlName="valorTotal" placeholder="Valor Total do item" readonly>
+            </mat-form-field>
+          </td>
+          <td>
+            <button type="button" class="default-button color-primary background-secondary" title="Limpar item" (click)="limparItemVenda()">
+              <mat-icon>clear</mat-icon>
+            </button>
+            <button type="button" class="default-button" (click)="adicionarItemVenda()" title="Adicionar item">
+              <mat-icon>add</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="itens-container" *ngIf="itensVenda && itensVenda.length">
+      <h1>Itens da Venda</h1>
+      <table class="default-table">
+        <thead>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Valor Unitário</th>
+          <th>Valor Impostos</th>
+          <th>Valor Total</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of itensVenda">
+            <td>{{ item.produto.nome }}</td>
+            <td>{{ item.quantidade }}</td>
+            <td>{{ item.valorUnitario | currency: 'BRL' }}</td>
+            <td>{{ item.valorImposto | currency: 'BRL' }}</td>
+            <td>{{ item.valorTotal | currency: 'BRL' }}</td>
+            <td>
+              <button
+                type="button"
+                class="default-button color-primary background-secondary"
+                (click)="removerItemVenda(item)"
+                title="Remover item da venda">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="!itensVenda || itensVenda.length <= 0">
+            <td colspan="5">Nenhum item adicionado</td>
+          </tr>
+        </tbody>
+      </table>
+      <h1>Totais</h1>
+      <table class="default-table">
+        <thead>
+          <th>Valor Total</th>
+          <th>Valor Impostos</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ valorTotal | currency: 'BRL' }}</td>
+            <td>{{ valorTotalImpostos | currency: 'BRL' }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="actions-container">
+        <button class="default-button color-primary background-secondary" type="button">
+          <mat-icon>clear</mat-icon>
+          Cancelar
+        </button>
+        <button class="default-button" type="submit">
+          <mat-icon>save</mat-icon>
+          Salvar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+

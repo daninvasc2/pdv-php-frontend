@@ -6,6 +6,7 @@ export type ItemVenda = {
   produtoId: number;
   quantidade: number;
   valorUnitario: number;
+  valorImposto: number;
   valorTotal: number;
   produto: Produto;
 };

@@ -12,13 +12,13 @@ const routes: Routes = [
   { path: '', redirectTo: 'vendas', pathMatch: 'full' },
   { path: 'vendas', component: VendaIndexComponent },
   { path: 'venda/cadastrar', component: VendaFormComponent },
-  { path: 'venda/editar/:uuid', component: VendaFormComponent },
+  { path: 'venda/editar/:id', component: VendaFormComponent },
   { path: 'produtos', component: ProdutoIndexComponent },
   { path: 'produto/cadastrar', component: ProdutoFormComponent },
-  { path: 'produto/editar/:uuid', component: ProdutoFormComponent },
+  { path: 'produto/editar/:id', component: ProdutoFormComponent },
   { path: 'tipos-produto', component: TiposProdutoIndexComponent },
   { path: 'tipo-produto/cadastrar', component: TiposProdutoFormComponent },
-  { path: 'tipo-produto/editar/:uuid', component: TiposProdutoFormComponent },
+  { path: 'tipo-produto/editar/:id', component: TiposProdutoFormComponent },
 ];
 
 @NgModule({

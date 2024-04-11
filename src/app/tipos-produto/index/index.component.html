@@ -1,6 +1,6 @@
 <app-default-header title="Tipos de Produto" icon="tipo-produto-icon.png" formRoute="/tipo-produto/cadastrar"></app-default-header>
 <div class="default-container">
-  <app-search-input></app-search-input>
+  <app-search-input (searchEvent)="filtrarTipoProduto($event)"></app-search-input>
   <table class="default-table">
     <thead>
       <tr>
@@ -11,14 +11,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tipoProduto of tiposProduto">
-        <td></td>
+      <tr *ngFor="let tipoProduto of tiposProdutoFiltrados">
         <td>{{ tipoProduto.id }}</td>
         <td>{{ tipoProduto.nome }}</td>
         <td>{{ tipoProduto.porcentagemImposto }}</td>
-        <td>
-          <a [routerLink]="['/produto', tipoProduto.id, 'editar']">Editar</a>
-          <a (click)="excluirTipoProduto(tipoProduto.id)">Excluir</a>
+        <td class="td-actions">
+          <a [routerLink]="['/tipo-produto', 'editar', tipoProduto.id]" title="Editar" role="button"><mat-icon>edit</mat-icon></a>
+          <a (click)="deletarTipoProduto(tipoProduto.id)" title="Deletar" role="button"><mat-icon>delete</mat-icon></a>
         </td>
       </tr>
       <tr *ngIf="!tiposProduto || tiposProduto.length <= 0">
@@ -26,4 +25,13 @@
       </tr>
     </tbody>
   </table>
+  <div class="pagination">
+    <button [disabled]="page <= 1" (click)="paginaAnterior()" title="Página anterior" class="default-button">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+
+    <button [disabled]="tiposProduto && tiposProduto.length < 10" (click)="paginaPosterior()" title="Página posterior" class="default-button">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
 </div>

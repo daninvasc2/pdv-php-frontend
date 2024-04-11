@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     height: 100dvh;
-    width: min(100%, 300px);
+    width: min(25dvw, 230px);
     background-color: var(--color-primary);
     border-right: 1px solid #e9ecef;
     position: relative;

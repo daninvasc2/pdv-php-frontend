@@ -2,7 +2,6 @@ FROM node:lts AS development
 
 WORKDIR /app
 RUN npm install -g @angular/cli@16.0.0
-RUN npm install --save @angular-material
 
 COPY package*.json ./
 

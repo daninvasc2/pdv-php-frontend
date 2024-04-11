@@ -1,32 +1,80 @@
 <app-default-header title="Vendas" icon="venda-icon.png" formRoute="/venda/cadastrar"></app-default-header>
 <div class="default-container">
-  <app-search-input></app-search-input>
+  <div class="search-container">
+    <app-search-input></app-search-input>
+    <input type="date" [(ngModel)]="dataInicial" (change)="buscarVendas()" class="default-input" placeholder="Data início">
+    <input type="date" [(ngModel)]="dataFinal" (change)="buscarVendas()" class="default-input" placeholder="Data fim">
+  </div>
   <table class="default-table">
     <thead>
       <tr>
         <th></th>
         <th>#</th>
-        <th>Valor</th>
+        <th>Valor total</th>
         <th>Valor imposto</th>
         <th>Data</th>
         <th>Ações</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let venda of vendas">
-        <td></td>
-        <td>{{ venda.id }}</td>
-        <td>{{ venda.valorTotal | currency }}</td>
-        <td>{{ venda.valorImpostos | currency }}</td>
-        <td>{{ venda.data | date: 'dd/MM/yyyy' }}</td>
-        <td>
-          <a [routerLink]="['/venda', venda.id, 'editar']">Editar</a>
-          <a (click)="excluirVenda(venda.id)">Excluir</a>
-        </td>
-      </tr>
-      <tr *ngIf="!vendas || vendas.length <= 0">
-        <td colspan="6">Nenhuma venda encontrada</td>
-      </tr>
+      <ng-container *ngFor="let venda of vendas; index as i">
+        <tr>
+          <td>
+            <button title="Expandir" class="default-button" (click)="abrirDetalheVenda(i)">
+              <mat-icon *ngIf="indiceExpandido != i">add</mat-icon>
+              <mat-icon *ngIf="indiceExpandido == i">remove</mat-icon>
+            </button>
+          </td>
+          <td>{{ venda.id }}</td>
+          <td>{{ venda.valorTotal | currency: 'BRL' }}</td>
+          <td>{{ venda.valorTotalImposto | currency: 'BRL' }}</td>
+          <td>{{ venda.data | date: 'dd/MM/yyyy' }}</td>
+          <td class="td-actions">
+            <a (click)="deletarVenda(venda.id)" title="Deletar" role="button"><mat-icon>delete</mat-icon></a>
+          </td>
+        </tr>
+        <tr *ngIf="i == indiceExpandido">
+          <td colspan="6">
+            <div class="expanded-row">
+              <div class="expanded-row-item">
+                <h3>Produtos</h3>
+                <table class="default-table sub-table">
+                  <thead>
+                    <tr>
+                      <th>Nome</th>
+                      <th>Quantidade</th>
+                      <th>Valor unitário</th>
+                      <th>Valor imposto</th>
+                      <th>Valor total do item</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of venda.itens">
+                      <td>{{ item.produto.nome }}</td>
+                      <td>{{ item.quantidade }}</td>
+                      <td>{{ item.valorUnitario | currency: 'BRL' }}</td>
+                      <td>{{ item.valorImposto | currency: 'BRL' }}</td>
+                      <td>{{ item.valorTotal | currency: 'BRL' }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="!vendas || vendas.length <= 0">
+          <td colspan="6">Nenhuma venda encontrada</td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
+  <div class="pagination">
+    <button [disabled]="page <= 1" (click)="paginaAnterior()" title="Página anterior" class="default-button">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+
+    <button [disabled]="vendas && vendas.length < 10" (click)="paginaPosterior()" title="Página posterior" class="default-button">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
 </div>

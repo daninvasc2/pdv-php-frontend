@@ -21,6 +21,9 @@ body {
 
 .default-container {
   padding: 1em;
+  max-height: calc(100dvh - 8em);
+  max-width: calc(100dvw - min(25dvw, 230px) - 5em);
+  overflow-y: auto;
 }
 
 .default-table {
@@ -39,7 +42,102 @@ body {
   background-color: #f2f2f2;
 }
 
-.default-table > thead > tr > tr:nth-child(even) {
-  background-color: #f2f2f2;
+.default-table > thead > th {
+  text-align: left;
 }
 
+.default-table > tbody > tr:hover {
+  background-color: var(--color-secondary);
+}
+
+.default-button {
+  background-color: var(--color-primary);
+  color: white;
+  padding: .5em 1em;
+  border: none;
+  border-radius: 3px;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--default-box-shadow);
+  font-size: .85em;
+  margin-right: 1em;
+}
+
+.default-button:disabled {
+  background-color: #ccc;
+  cursor: auto;
+}
+
+.default-form {
+  display: grid;
+  gap: 2em;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  padding: 1em;
+}
+
+.buttons-container {
+    padding: 1em;
+    display: flex;
+    gap: 1em;
+    justify-content: space-between;
+}
+
+.grid-center {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+a[role="button"] {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.td-actions {
+  display: flex;
+  gap: 1em;
+}
+
+.pagination {
+  margin-top: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.color-primary {
+  color: var(--color-primary);
+}
+
+.color-secondary {
+  color: var(--color-secondary);
+}
+
+.background-primary {
+  background-color: var(--color-primary);
+}
+
+.background-secondary {
+  background-color: var(--color-secondary);
+}
+
+.mat-mdc-snack-bar-container {
+  &.success-snackbar {
+    --mdc-snackbar-container-color: var(--color-primary);
+    --mat-mdc-snack-bar-button-color: var(--color-secondary) !important;
+    --mdc-snackbar-supporting-text-color: var(--color-secondary);
+    --mat-mdc-button-persistent-ripple-color: var(--color-secondary);
+  }
+  &.error-snackbar {
+    --mat-mdc-snack-bar-button-color: #fff !important;
+    --mdc-snackbar-supporting-text-color: #fff;
+    --mdc-snackbar-action-color: #fff;
+    --mat-mdc-button-persistent-ripple-color: #fff;
+  }
+}

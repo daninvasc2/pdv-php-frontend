@@ -1,0 +1,16 @@
+<form>
+  <mat-form-field class="w-full">
+    <mat-label>Produto</mat-label>
+    <input type="text"
+           placeholder="Pesquise por código ou nome do produto"
+           aria-label="Produto"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onSelection($event)" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{ option.id }} - {{ option.nome }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

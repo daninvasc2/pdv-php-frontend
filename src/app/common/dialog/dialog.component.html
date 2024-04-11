@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+<div mat-dialog-content *ngIf="description">
+  {{ description }}
+</div>
+<div mat-dialog-actions class="actions">
+  <button mat-button mat-dialog-close class="default-button color-primary background-secondary">Não</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="salvar()" class="default-button">Sim</button>
+</div>

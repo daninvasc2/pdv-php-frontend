@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-search-input',
@@ -7,10 +8,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class SearchInputComponent {
   @Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
-  searchInput: string = '';
   constructor() { }
 
-  onSearch() {
-    this.searchEvent.emit(this.searchInput);
+  onSearch($event: any) {
+    this.searchEvent.emit($event.target.value);
   }
 }

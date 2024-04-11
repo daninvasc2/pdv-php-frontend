@@ -3,7 +3,7 @@
     <img src="../../assets/icons/{{ icon }}" alt="Ícone do {{ title }}">
     <h1>{{ title }}</h1>
   </div>
-  <button [routerLink]="formRoute" type="button">
+  <button *ngIf="formRoute != ''" [routerLink]="formRoute" type="button">
     + Cadastrar
   </button>
 </div>
