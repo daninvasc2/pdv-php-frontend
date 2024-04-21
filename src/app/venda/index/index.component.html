@@ -38,26 +38,28 @@
             <div class="expanded-row">
               <div class="expanded-row-item">
                 <h3>Produtos</h3>
-                <table class="default-table sub-table">
-                  <thead>
-                    <tr>
-                      <th>Nome</th>
-                      <th>Quantidade</th>
-                      <th>Valor unitário</th>
-                      <th>Valor imposto</th>
-                      <th>Valor total do item</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let item of venda.itens">
-                      <td>{{ item.produto.nome }}</td>
-                      <td>{{ item.quantidade }}</td>
-                      <td>{{ item.valorUnitario | currency: 'BRL' }}</td>
-                      <td>{{ item.valorImposto | currency: 'BRL' }}</td>
-                      <td>{{ item.valorTotal | currency: 'BRL' }}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="grid-center">
+                  <table class="default-table sub-table">
+                    <thead>
+                      <tr>
+                        <th>Nome</th>
+                        <th>Quantidade</th>
+                        <th>Valor unitário</th>
+                        <th>Valor imposto</th>
+                        <th>Valor total do item</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of venda.itens">
+                        <td>{{ item.produto.nome }}</td>
+                        <td>{{ item.quantidade }}</td>
+                        <td>{{ item.valorUnitario | currency: 'BRL' }}</td>
+                        <td>{{ item.valorImposto | currency: 'BRL' }}</td>
+                        <td>{{ item.valorTotal | currency: 'BRL' }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </td>

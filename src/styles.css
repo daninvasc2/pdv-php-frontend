@@ -82,10 +82,10 @@ body {
 }
 
 .buttons-container {
-    padding: 1em;
-    display: flex;
-    gap: 1em;
-    justify-content: space-between;
+  padding: 1em;
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
 }
 
 .grid-center {
@@ -128,13 +128,13 @@ a[role="button"] {
 }
 
 .mat-mdc-snack-bar-container {
-  &.success-snackbar {
+  .success-snackbar {
     --mdc-snackbar-container-color: var(--color-primary);
     --mat-mdc-snack-bar-button-color: var(--color-secondary) !important;
     --mdc-snackbar-supporting-text-color: var(--color-secondary);
     --mat-mdc-button-persistent-ripple-color: var(--color-secondary);
   }
-  &.error-snackbar {
+  .error-snackbar {
     --mat-mdc-snack-bar-button-color: #fff !important;
     --mdc-snackbar-supporting-text-color: #fff;
     --mdc-snackbar-action-color: #fff;
